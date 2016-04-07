@@ -16,7 +16,7 @@ namespace DomainModel
         [ForeignKey("PostType")]
         public int PostTypeId { get; set; }
 
-        public int ParentId { get; set; }
+        public int? ParentId { get; set; }
         public int? AcceptedAnswerId { get; set; }
         public DateTime CreatedDate { get; set; }
         public int Score { get; set; }

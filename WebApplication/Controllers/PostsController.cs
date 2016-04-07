@@ -15,7 +15,8 @@ namespace WebApplication.Controllers
 
         public IHttpActionResult Get()
         {
-            return Ok("This is just test!!!");
+            var postDate = postRepository.GetAllDataFromPostTable();
+            return Ok(postDate);
         }
 
     }
