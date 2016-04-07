@@ -52,6 +52,12 @@ namespace WebApplication
                defaults: new { controller = "Users", id = RouteParameter.Optional }
                );
 
+            config.Routes.MapHttpRoute(
+                name: Config.PostTypeRoute,
+                routeTemplate: "api/posttype/{id}",
+                defaults: new { controller = "PostTypes", id = RouteParameter.Optional }
+            );
+
             config.Formatters.JsonFormatter.SerializerSettings.ContractResolver = 
                 new CamelCasePropertyNamesContractResolver();
             config.Formatters.Remove(config.Formatters.XmlFormatter);

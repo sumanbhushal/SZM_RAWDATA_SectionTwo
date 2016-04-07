@@ -13,6 +13,7 @@ namespace WebApplication.Utils
         public const string SearchHistoriesRoute = "SearhHistoriesApi";
         public const string TagsRoute = "TagsApi";
         public const string UsersRoute = "UsersApi";
+        public const string PostTypeRoute = "PostTypeApi";
 
         public const int DefaultPageSize = 5;
     }

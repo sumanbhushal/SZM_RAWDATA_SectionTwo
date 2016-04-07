@@ -191,5 +191,16 @@ namespace MySqlDatabase
             }
         }
 
+        /**********************
+                    PostType
+        ***********************/
+
+        public IEnumerable<PostType> GetPostType()
+        {
+            using (var postTypeData = new StackOverflowContext())
+            {
+                return postTypeData.PostTypes.ToList();
+            }
+        }
     }
 }

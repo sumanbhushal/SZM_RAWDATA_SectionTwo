@@ -49,5 +49,11 @@ namespace DataAccessLayer
          ------------------------*/
         IEnumerable<User> GetAllUserData(int limit, int offset);
         int GetNumberOfUser();
+
+        /**********************
+                     PostType
+         ***********************/
+        IEnumerable<PostType> GetPostType();
+
     }
 }
