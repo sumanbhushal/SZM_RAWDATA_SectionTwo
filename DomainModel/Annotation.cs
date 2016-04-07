@@ -13,16 +13,15 @@ namespace DomainModel
     {
         [Key]
         public int Id { get; set; }
-
-        [ForeignKey("Post")]
         public int PostId { get; set; }
-
-        [ForeignKey("Comment")]
         public int CommentId { get; set; }
         public string AnnotationDescription { get; set; }
         public DateTime AnnotationCreateDate { get; set; }
 
-        public Post Post { get; set; } 
+        [ForeignKey("PostId")]
+        public Post Post { get; set; }
+
+        [ForeignKey("CommentId")]
         public Comment Comment { get; set; }
     }
 }

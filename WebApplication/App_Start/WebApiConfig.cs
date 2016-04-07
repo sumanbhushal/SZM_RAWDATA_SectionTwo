@@ -22,6 +22,36 @@ namespace WebApplication
                 defaults: new {controller = "Posts",  id = RouteParameter.Optional }
             );
 
+            config.Routes.MapHttpRoute(
+                name: Config.AnnotationRoute,
+                routeTemplate: "api/annotations/{id}",
+                defaults: new { controller = "Annotations", id = RouteParameter.Optional }
+            );
+            
+            config.Routes.MapHttpRoute(
+               name: Config.CommentsRoute,
+               routeTemplate: "api/comments/{id}",
+               defaults: new { controller = "Comments", id = RouteParameter.Optional }
+               );
+
+            config.Routes.MapHttpRoute(
+               name: Config.SearchHistoriesRoute,
+               routeTemplate: "api/searchhistories/{id}",
+               defaults: new { controller = "SearchHistories", id = RouteParameter.Optional }
+               );
+
+            config.Routes.MapHttpRoute(
+               name: Config.TagsRoute,
+               routeTemplate: "api/tags/{id}",
+               defaults: new { controller = "Tags", id = RouteParameter.Optional }
+               );
+
+            config.Routes.MapHttpRoute(
+               name: Config.UsersRoute,
+               routeTemplate: "api/users/{id}",
+               defaults: new { controller = "Users", id = RouteParameter.Optional }
+               );
+
             config.Formatters.JsonFormatter.SerializerSettings.ContractResolver = 
                 new CamelCasePropertyNamesContractResolver();
             config.Formatters.Remove(config.Formatters.XmlFormatter);

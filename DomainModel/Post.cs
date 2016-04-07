@@ -12,10 +12,7 @@ namespace DomainModel
     {
         [Key]
         public int Id { get; set; }
-
-        [ForeignKey("PostType")]
         public int PostTypeId { get; set; }
-
         public int? ParentId { get; set; }
         public int? AcceptedAnswerId { get; set; }
         public DateTime CreatedDate { get; set; }
@@ -23,13 +20,13 @@ namespace DomainModel
         public string Body { get; set; }
         public DateTime? CloseDate { get; set; }
         public string Title { get; set; }
-
-        [ForeignKey("User")]
         public int UserId { get; set; }
-
         public int? Mark { get; set; }
 
+        [ForeignKey("PostTypeId")]
         public PostType PostType { get; set; }
-        public User User { get; set; }
+
+        [ForeignKey("UserId")]
+        public User Users { get; set; }
     }
 }

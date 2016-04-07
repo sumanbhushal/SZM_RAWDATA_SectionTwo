@@ -9,6 +9,45 @@ namespace DataAccessLayer
 {
     public interface IRepository
     {
-        IEnumerable<Post> GetAllDataFromPostTable();
+        /*----------------------
+               Posts
+       ------------------------*/
+        IEnumerable<Post> GetPosts(int limit, int offset);
+        int GetNumberOfPosts();
+        IEnumerable<Post> GetAllMatchPostsWithKeyword(string keyword);
+
+        /*----------------------
+                Annotation
+        ------------------------*/
+        IEnumerable<Annotation> GetAnnotions(int limit, int offset);
+        int GetNumberOfAllAnnotation();
+        Annotation FindAnnotationById(int id);
+        bool InsertNewAnnotation(Annotation annotation);
+        
+
+        /*-----------------------
+                Comment
+        -------------------------*/
+        IEnumerable<Comment> GetComments(int limit, int offset);
+        int GetNumberOfComments();
+
+        /*-------------------------
+                SearchHistory
+         -------------------------*/
+
+        IEnumerable<SearchHistory> GetAllSearchHistory(int limit, int offset);
+        int GetNumberofSearchHistory();
+
+        /*---------------------
+            Tags
+            ---------*/
+        IEnumerable<Tag> GetTags(int limit, int offset);
+        int GetNumberOfTags();
+
+        /*----------------------
+                 User
+         ------------------------*/
+        IEnumerable<User> GetAllUserData(int limit, int offset);
+        int GetNumberOfUser();
     }
 }

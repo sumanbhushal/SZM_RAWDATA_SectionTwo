@@ -161,6 +161,7 @@
     <Compile Include="Controllers\AnnotationsController.cs" />
     <Compile Include="Controllers\CommentsController.cs" />
     <Compile Include="Controllers\LinkPostsController.cs" />
+    <Compile Include="Controllers\ModelFactory.cs" />
     <Compile Include="Controllers\PostsController.cs" />
     <Compile Include="Controllers\PostTypesController.cs" />
     <Compile Include="Controllers\SearchHistoriesController.cs" />

@@ -15,15 +15,14 @@ namespace DomainModel
         public int Score { get; set; }
         public string Text { get; set; }
         public DateTime CreatedDate { get; set; }
-
-        [ForeignKey("Post")]
         public int PostId { get; set; }
-
-        [ForeignKey("User")]
         public int UserId { get; set; }
         public int? Mark { get; set; }
 
+        [ForeignKey("PostId")]
         public Post Post { get; set; }
+
+        [ForeignKey("UserId")]
         public User User { get; set; }
     }
 }
