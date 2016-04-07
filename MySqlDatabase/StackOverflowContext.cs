@@ -21,6 +21,7 @@ namespace MySqlDatabase
         public DbSet<User> Users { get; set; }
         public DbSet<Annotation> Annotations { get; set; }
         public DbSet<SearchHistory> SearchHisotries { get; set; }
+        public DbSet<PostType> PostTypes { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
@@ -93,6 +94,16 @@ namespace MySqlDatabase
             modelBuilder.Entity<User>().Property(u => u.creationDate).HasColumnName("usercreationdate");
             modelBuilder.Entity<User>().Property(u => u.Location).HasColumnName("userlocation");
             modelBuilder.Entity<User>().Property(u => u.Age).HasColumnName("userage");
+
+            /**********************
+                    PostType
+            ***********************/
+            modelBuilder.Entity<PostType>().ToTable("posttype");
+            modelBuilder.Entity<PostType>().Property(pt => pt.Id).HasColumnName("id");
+            modelBuilder.Entity<PostType>().Property(pt => pt.Type).HasColumnName("posttype");
+
+
+
 
             base.OnModelCreating(modelBuilder);
         }

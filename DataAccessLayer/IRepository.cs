@@ -10,5 +10,10 @@ namespace DataAccessLayer
     public interface IRepository
     {
         IEnumerable<Post> GetAllDataFromPostTable();
+
+        /**********************
+                    PostType
+        ***********************/
+        IEnumerable<PostType> GetPostType();
     }
 }
