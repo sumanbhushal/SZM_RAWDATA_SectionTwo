@@ -45,6 +45,25 @@ namespace WebApplication.Controllers
             if (data == null) return NotFound();
             return Ok(data);
         }
+        
+        /*Insert Annotation*/
+        public IHttpActionResult Put(AnnotationModel annotationModel)
+        {
+            var annotation = new Annotation
+            {
+                PostId = annotationModel.PostId,
+                CommentId = annotationModel.CommentId,
+                AnnotationCreateDate = annotationModel.AnnotationCreateDate,
+                AnnotationDescription = annotationModel.AnnotationDescription
+            };
+
+            if (_repository.InsertNewAnnotation(annotation) == false)
+                return NotFound();
+            return Created(Config.AnnotationRoute, ModelFactory.Map(annotation, Url));
+            //return Ok();
+        }
+
+        /*Update Annotation*/
 
         public IHttpActionResult Post(int id, AnnotationModel annotationModel)
         {
@@ -57,11 +76,32 @@ namespace WebApplication.Controllers
                 AnnotationDescription = annotationModel.AnnotationDescription
             };
 
-            if (_repository.InsertNewAnnotation(annotation) == false)
-                return NotFound();
-            return Created(Config.AnnotationRoute, ModelFactory.Map(annotation, Url));
-            //return Ok();
+            var data = _repository.FindAnnotationById(id);
+            if (data != null)
+            {
+                if (_repository.UpdateAnnotation(annotation) == false)
+                    return NotFound();
+
+                return Created(Config.AnnotationRoute, ModelFactory.Map(annotation, Url));
+                //return Ok();
+            }
+            return NotFound();
+
         }
+
+        /*Delete Annotation*/
+        public IHttpActionResult Delete(int id)
+        {
+            var data = _repository.FindAnnotationById(id);
+            if (data != null)
+            {
+                _repository.DeleteAnnotationById(id);
+                return Ok();
+            }
+
+            return NotFound();
+        }
+
 
     }
 }

@@ -82,23 +82,66 @@ namespace MySqlDatabase
             {
                 return database.Annotations.FirstOrDefault(a => a.Id == id);
             }
-            {
-
-            }
         }
 
         public bool InsertNewAnnotation(Annotation annotation)
         {
             using (var database = new StackOverflowContext())
             {
-                database.Annotations.Add(annotation);
-                database.SaveChanges();
-                return true;
-
+                try
+                {
+                    database.Annotations.Add(annotation);
+                    database.SaveChanges();
+                    return true;
+                }
+                catch (Exception)
+                {
+                    return false;
+                }
             }
         }
 
-        
+        public bool UpdateAnnotation(Annotation annotation)
+        {
+            using (var database = new StackOverflowContext())
+            {
+                try
+                {
+                    database.Entry(annotation).State = EntityState.Modified;
+                    database.SaveChanges();
+                    return true;
+                }
+                catch (Exception)
+                {
+                    return false;
+                }
+            }
+        }
+
+        public bool DeleteAnnotationById(int id)
+        {
+            using (var database = new StackOverflowContext())
+            {
+                Annotation annotation = database.Annotations.Find(id);
+                if (annotation != null)
+                {
+                    try
+                    {
+                        database.Annotations.Remove(annotation);
+                        database.SaveChanges();
+                        return true;
+                    }
+                    catch (Exception)
+                    {
+                        return false;
+                    }
+                }
+                return false;
+            }
+        }
+
+
+
         /*---------------------
                 Comment
             ----------------------*/
@@ -143,6 +186,74 @@ namespace MySqlDatabase
             using (var db = new StackOverflowContext())
             {
                 return db.SearchHisotries.Count();
+            }
+        }
+
+
+        public SearchHistory FindSearchHistoryById(int id)
+        {
+            using (var database = new StackOverflowContext())
+            {
+                return database.SearchHisotries.FirstOrDefault(sh => sh.Id == id);
+            }
+        }
+
+        public bool InsertNewSearchHistory(SearchHistory searchHisotry)
+        {
+            using (var database = new StackOverflowContext())
+            {
+                try
+                {
+                    database.SearchHisotries.Add(searchHisotry);
+                    database.SaveChanges();
+                    return true;
+                }
+                catch (Exception)
+                {
+                    return false;
+                }
+            }
+        }
+
+        public bool DeleteSearchHistoryById(int id)
+        {
+            using (var database = new StackOverflowContext())
+            {
+                SearchHistory searchHistory = database.SearchHisotries.Find(id);
+                if (searchHistory != null)
+                {
+                    try
+                    {
+                        database.SearchHisotries.Remove(searchHistory);
+                        database.SaveChanges();
+                        return true;
+                    }
+                    catch (Exception)
+                    {
+                        return false;
+                    }
+
+                }
+                return false;
+            }
+        }
+
+        public bool DeleteAllSearchHistories()
+        {
+
+            using (var database = new StackOverflowContext())
+            {
+                try
+                {
+                    database.Database.ExecuteSqlCommand("TRUNCATE TABLE searchhistory");
+                    database.SaveChanges();
+                    return true;
+                }
+                catch (Exception)
+                {
+                    return false;
+                }
+
             }
         }
 

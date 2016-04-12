@@ -5,7 +5,9 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using DataAccessLayer;
+using DomainModel;
 using MySqlDatabase;
+using WebApplication.Models;
 using WebApplication.Utils;
 
 namespace WebApplication.Controllers
@@ -34,6 +36,43 @@ namespace WebApplication.Controllers
                 Data = searhHistoryData
             };
             return Ok(result);
+        }
+
+        public IHttpActionResult Put(SearchHistoryModel searchHistoryModel)
+        {
+            var searchHisotry = new SearchHistory
+            {
+                Keyword = searchHistoryModel.Keyword,
+                SearchDateTime = DateTime.Now
+            };
+            if (_repository.InsertNewSearchHistory(searchHisotry) == false)
+                return NotFound();
+            return Created(Config.SearchHistoriesRoute, ModelFactory.Map(searchHisotry, Url));
+
+            //return Ok();
+        }
+
+        public IHttpActionResult Delete(int id)
+        {
+            var data = _repository.FindSearchHistoryById(id);
+            if (data != null)
+            {
+                if (_repository.DeleteSearchHistoryById(id))
+                {
+                    return Ok();
+                }
+                return NotFound();
+            }
+            return NotFound();
+        }
+
+        public IHttpActionResult Delete()
+        {
+            if (_repository.DeleteAllSearchHistories() == false)
+            {
+                return NotFound();
+            }
+            return Ok();
         }
     }
 }
