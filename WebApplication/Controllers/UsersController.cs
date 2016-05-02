@@ -38,5 +38,12 @@ namespace WebApplication.Controllers
 
             return Ok(result);
         }
+
+        public IHttpActionResult Get(int id)
+        {
+            var userDetails = _repository.FindUserDetailById(id).Select(u => ModelFactory.Map(u, Url));
+            if (userDetails == null) return NotFound();
+            return Ok(userDetails);
+        }
     }
 }

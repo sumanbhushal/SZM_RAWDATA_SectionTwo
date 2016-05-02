@@ -45,7 +45,7 @@ namespace WebApplication.Controllers
             return Ok(searchResults);
         }
 
-        public IHttpActionResult Put(int id, PostModel model)
+       /* public IHttpActionResult Put(int id, PostModel model)
         {
             var post = new Post
             {
@@ -53,11 +53,11 @@ namespace WebApplication.Controllers
                 Title = model.Title
             };
 
-            /*if(_repository.UpdatePost(id, post) == false)
+            if(_repository.UpdatePost(id, post) == false)
                 return NotFound():
-            return Created(Config.PostsRoute, ModelFactory.Map(post));*/
+            return Created(Config.PostsRoute, ModelFactory.Map(post));
             return Ok();
-        }
+        }*/
 
     }
 }

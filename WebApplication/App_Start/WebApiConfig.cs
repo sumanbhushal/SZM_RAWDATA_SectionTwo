@@ -58,6 +58,11 @@ namespace WebApplication
                 defaults: new { controller = "PostTypes", id = RouteParameter.Optional }
             );
 
+            config.Routes.MapHttpRoute(
+                name: Config.LinkPostsRoute,
+                routeTemplate: "api/linkposts/{id}",
+                defaults: new { controller = "LinkPosts", id = RouteParameter.Optional }
+            );
             config.Formatters.JsonFormatter.SerializerSettings.ContractResolver = 
                 new CamelCasePropertyNamesContractResolver();
             config.Formatters.Remove(config.Formatters.XmlFormatter);

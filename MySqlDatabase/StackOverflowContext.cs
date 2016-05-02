@@ -22,6 +22,7 @@ namespace MySqlDatabase
         public DbSet<Annotation> Annotations { get; set; }
         public DbSet<SearchHistory> SearchHisotries { get; set; }
         public DbSet<PostType> PostTypes { get; set; }
+        public DbSet<LinkPost> LinkPosts { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
@@ -41,6 +42,7 @@ namespace MySqlDatabase
             modelBuilder.Entity<Post>().Property(p => p.UserId).HasColumnName("userid");
             modelBuilder.Entity<Post>().Property(p => p.Mark).HasColumnName("mark");
 
+
             /***************************************
                         Annotation
             ***************************************/
@@ -54,7 +56,6 @@ namespace MySqlDatabase
             modelBuilder.Entity<Annotation>()
                 .Property(a => a.AnnotationCreateDate)
                 .HasColumnName("annotationcreatedate");
-            base.OnModelCreating(modelBuilder);
             
 
             /***************************************
@@ -102,6 +103,12 @@ namespace MySqlDatabase
             modelBuilder.Entity<PostType>().Property(pt => pt.Id).HasColumnName("id");
             modelBuilder.Entity<PostType>().Property(pt => pt.Type).HasColumnName("posttype");
 
+            /*********************
+                    LinkPost
+            *********************/
+            modelBuilder.Entity<LinkPost>().ToTable("linkpost");
+            modelBuilder.Entity<LinkPost>().Property(lp => lp.PostId).HasColumnName("postid");
+            modelBuilder.Entity<LinkPost>().Property(lp => lp.LinkPostId).HasColumnName("linkpostid");
 
             base.OnModelCreating(modelBuilder);
         }

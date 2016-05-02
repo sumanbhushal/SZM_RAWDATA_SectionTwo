@@ -15,13 +15,15 @@ namespace DataAccessLayer
         IEnumerable<Post> GetPosts(int limit, int offset);
         int GetNumberOfPosts();
         IEnumerable<Post> GetAllMatchPostsWithKeyword(string keyword);
+        IEnumerable<Post> GetPostDetailsByPostId(int id);
+        IEnumerable<Post> GetAnswerPostByPostId(int id);
 
         /*----------------------
                 Annotation
         ------------------------*/
         IEnumerable<Annotation> GetAnnotions(int limit, int offset);
         int GetNumberOfAllAnnotation();
-        Annotation FindAnnotationById(int id);
+        IEnumerable<Annotation> FindAnnotationById(int id);
         bool InsertNewAnnotation(Annotation annotation);
         bool UpdateAnnotation(Annotation annotation);
         bool DeleteAnnotationById(int id);
@@ -32,6 +34,7 @@ namespace DataAccessLayer
         -------------------------*/
         IEnumerable<Comment> GetComments(int limit, int offset);
         int GetNumberOfComments();
+        IEnumerable<Comment> FindCommentById(int id);
 
         /*-------------------------
                 SearchHistory
@@ -39,7 +42,7 @@ namespace DataAccessLayer
 
         IEnumerable<SearchHistory> GetAllSearchHistory(int limit, int offset);
         int GetNumberofSearchHistory();
-        SearchHistory FindSearchHistoryById(int id);
+        IEnumerable<SearchHistory> FindSearchHistoryById(int id);
         bool InsertNewSearchHistory(SearchHistory searchHisotry);
         bool DeleteSearchHistoryById(int id);
         bool DeleteAllSearchHistories();
@@ -49,17 +52,26 @@ namespace DataAccessLayer
             ---------*/
         IEnumerable<Tag> GetTags(int limit, int offset);
         int GetNumberOfTags();
+        IEnumerable<Tag> FindTagsByPostId(int postid);
 
         /*----------------------
                  User
          ------------------------*/
         IEnumerable<User> GetAllUserData(int limit, int offset);
         int GetNumberOfUser();
+        IEnumerable<User> FindUserDetailById(int id);
 
         /**********************
                      PostType
          ***********************/
         IEnumerable<PostType> GetPostType();
+        IEnumerable<PostType> FindPostTypeById(int id);
 
+        /**********************
+               LinkToPost
+        ***********************/
+        IEnumerable<LinkPost> GetLinkToPost(int limit, int offset);
+        int GetNumberOfLinkPosts();
+        IEnumerable<LinkPost> FindLinkToPostByPostId(int postId);
     }
 }

@@ -17,6 +17,9 @@ namespace WebApplication.Controllers
         private static readonly IMapper CommentMapper;
         private static readonly IMapper SearchHistoryMapper;
         private static readonly IMapper UserMapper;
+        private static readonly IMapper LinkPostMapper;
+        private static readonly IMapper PostTypeMapper;
+        private static readonly IMapper PostTagsMapper; 
 
 
         static ModelFactory()
@@ -53,6 +56,24 @@ namespace WebApplication.Controllers
             ---------------------------*/
             var userConfig = new MapperConfiguration(ucfg => ucfg.CreateMap<User, UserModel>());
             UserMapper = userConfig.CreateMapper();
+
+            /*--------------------------
+                    Link Post 
+            ---------------------------*/
+            var linkPostConfig = new MapperConfiguration(lpcfg => lpcfg.CreateMap<LinkPost, LinkPostModel>());
+            LinkPostMapper = linkPostConfig.CreateMapper();
+
+            /*--------------------------
+                    Post Type
+            ---------------------------*/
+            var postTypeConfig = new MapperConfiguration(ptcfg => ptcfg.CreateMap<PostType, PostTypeModel>());
+            PostTypeMapper = postTypeConfig.CreateMapper();
+
+            /*--------------------------
+                  Post Tags
+           ---------------------------*/
+            var postTagsConfig = new MapperConfiguration(tcfg => tcfg.CreateMap<Tag, TagModel>());
+            PostTagsMapper = postTagsConfig.CreateMapper();
         }
 
         /*--------------------------------
@@ -115,6 +136,45 @@ namespace WebApplication.Controllers
             var userModel = UserMapper.Map<UserModel>(user);
             userModel.Url = urlHelper.Link(Config.UsersRoute, new { user.Id });
             return userModel;
+        }
+
+        /*----------------------------
+               LinkPost
+       -----------------------------*/
+
+        public static LinkPostModel Map(LinkPost linkpost, UrlHelper urlHelper)
+        {
+            if (linkpost == null) return null;
+
+            var linkPostModel = LinkPostMapper.Map<LinkPostModel>(linkpost);
+            linkPostModel.PostUrl = urlHelper.Link(Config.LinkPostsRoute, new { linkpost.PostId });
+            return linkPostModel;
+        }
+
+        /*----------------------------
+               Post Type
+       -----------------------------*/
+
+        public static PostTypeModel Map(PostType postType, UrlHelper urlHelper)
+        {
+            if (postType == null) return null;
+
+            var postTypeModel = PostTypeMapper.Map<PostTypeModel>(postType);
+            postTypeModel.Url = urlHelper.Link(Config.PostTypeRoute, new { postType.Id });
+            return postTypeModel;
+        }
+
+        /*----------------------------
+               Post Tags
+       -----------------------------*/
+
+        public static TagModel Map(Tag tags, UrlHelper urlHelper)
+        {
+            if (tags == null) return null;
+
+            var tagModel = PostTagsMapper.Map<TagModel>(tags);
+            tagModel.PostUrl = urlHelper.Link(Config.TagsRoute, new { tags.PostId});
+            return tagModel;
         }
     }
 }

@@ -38,6 +38,12 @@ namespace WebApplication.Controllers
             return Ok(result);
         }
 
+        public IHttpActionResult Get(int id)
+        {
+            var searchHistoryById = _repository.FindSearchHistoryById(id).Select(sh => ModelFactory.Map(sh, Url));
+            return Ok(searchHistoryById);
+        }
+
         public IHttpActionResult Put(SearchHistoryModel searchHistoryModel)
         {
             var searchHisotry = new SearchHistory

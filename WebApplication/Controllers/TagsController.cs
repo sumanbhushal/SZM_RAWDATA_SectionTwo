@@ -18,7 +18,7 @@ namespace WebApplication.Controllers
             var limit = pagesize;
             var offset = page * pagesize;
 
-            var tagsData = _repository.GetTags(limit, offset);
+            var tagsData = _repository.GetTags(limit, offset).Select(t => ModelFactory.Map(t, Url));
 
             var totalNumberOfTagsData = _repository.GetNumberOfTags();
 
@@ -36,6 +36,13 @@ namespace WebApplication.Controllers
 
             };
             return Ok(result);
+        }
+
+        public IHttpActionResult Get(int id)
+        {
+            var tagsByPostId = _repository.FindTagsByPostId(id).Select(t => ModelFactory.Map(t,Url));
+            if (tagsByPostId == null) return NotFound();
+            return Ok(tagsByPostId);
         }
     }
 }

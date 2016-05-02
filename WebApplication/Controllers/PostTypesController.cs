@@ -11,12 +11,19 @@ namespace WebApplication.Controllers
 {
     public class PostTypesController : ApiController
     {
-        IRepository postTypeRepository = new MySqlRepository();
+        IRepository _repository = new MySqlRepository();
 
         public IHttpActionResult Get()
         {
-            var postTypeDate = postTypeRepository.GetPostType();
+            var postTypeDate = _repository.GetPostType().Select(pt => ModelFactory.Map(pt, Url));
             return Ok(postTypeDate);
+        }
+
+        public IHttpActionResult Get(int id)
+        {
+            var postTypeDataById = _repository.FindPostTypeById(id).Select(pt => ModelFactory.Map(pt, Url));
+            if (postTypeDataById == null) return NotFound();
+            return Ok(postTypeDataById);
         }
     }
 }

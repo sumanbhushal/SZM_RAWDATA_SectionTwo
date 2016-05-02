@@ -52,6 +52,29 @@ namespace MySqlDatabase
             }
         }
 
+        public IEnumerable<Post> GetPostDetailsByPostId(int id)
+        {
+            using (var database = new StackOverflowContext())
+            {
+                var postDetails = database.Posts
+                    .Include("Users")
+                    .Include("PostType")
+                    .Where(p => p.Id == id)
+                    .ToList();
+                return postDetails;
+            }
+        }
+
+        public IEnumerable<Post> GetAnswerPostByPostId(int id)
+        {
+            using (var database = new StackOverflowContext())
+            {
+                var answersByPostId = database.Posts
+                    .Where(pa => pa.ParentId == id && pa.PostTypeId == 2)
+                    .ToList();
+                return answersByPostId;
+            }
+        }
         /*----------------------
             Annotation
         ----------------------*/
@@ -76,11 +99,13 @@ namespace MySqlDatabase
         }
 
 
-        public Annotation FindAnnotationById(int id)
+        public IEnumerable<Annotation> FindAnnotationById(int id)
         {
             using (var database = new StackOverflowContext())
             {
-                return database.Annotations.FirstOrDefault(a => a.Id == id);
+                return database.Annotations
+                    .Where(a => a.Id == id)
+                    .ToList();
             }
         }
 
@@ -105,9 +130,16 @@ namespace MySqlDatabase
         {
             using (var database = new StackOverflowContext())
             {
+                var dbAnnotation = database.Annotations.FirstOrDefault(a => a.Id == annotation.Id);
+                if (dbAnnotation == null) return false;
+
                 try
                 {
-                    database.Entry(annotation).State = EntityState.Modified;
+                    //database.Entry(annotation).State = EntityState.Modified;
+                    dbAnnotation.PostId = annotation.PostId;
+                    dbAnnotation.CommentId = annotation.CommentId;
+                    dbAnnotation.AnnotationDescription = annotation.AnnotationDescription;
+                    dbAnnotation.AnnotationCreateDate = annotation.AnnotationCreateDate;
                     database.SaveChanges();
                     return true;
                 }
@@ -166,6 +198,15 @@ namespace MySqlDatabase
             }
         }
 
+        public IEnumerable<Comment> FindCommentById(int id)
+        {
+            using (var db = new StackOverflowContext())
+            {
+                return db.Comments
+                    .Where(c => c.Id == id)
+                    .ToList();
+            }
+        }
         /*---------------------------------
                       Search History
             ------------------------------*/
@@ -190,11 +231,13 @@ namespace MySqlDatabase
         }
 
 
-        public SearchHistory FindSearchHistoryById(int id)
+        public IEnumerable<SearchHistory> FindSearchHistoryById(int id)
         {
             using (var database = new StackOverflowContext())
             {
-                return database.SearchHisotries.FirstOrDefault(sh => sh.Id == id);
+                return database.SearchHisotries
+                    .Where(sh => sh.Id == id)
+                    .ToList();
             }
         }
 
@@ -279,6 +322,17 @@ namespace MySqlDatabase
                 return db.Tags.Count();
             }
         }
+
+        public IEnumerable<Tag> FindTagsByPostId(int postid)
+        {
+            using (var db = new StackOverflowContext())
+            {
+                return db.Tags
+                    .Where(lp => lp.PostId == postid)
+                    .ToList();
+            }
+        }
+
         /*-----------------------
                 User
         -----------------------*/
@@ -302,6 +356,16 @@ namespace MySqlDatabase
             }
         }
 
+        public IEnumerable<User> FindUserDetailById(int id)
+        {
+            using (var db = new StackOverflowContext())
+            {
+                return db.Users
+                    .Where(u => u.Id == id)
+                    .ToList();
+            }
+        }
+
         /**********************
                     PostType
         ***********************/
@@ -311,6 +375,50 @@ namespace MySqlDatabase
             using (var postTypeData = new StackOverflowContext())
             {
                 return postTypeData.PostTypes.ToList();
+            }
+        }
+
+        public IEnumerable<PostType> FindPostTypeById(int id)
+        {
+            using (var db = new StackOverflowContext())
+            {
+                return db.PostTypes
+                    .Where(pt => pt.Id == id)
+                    .ToList();
+            }
+        }
+
+
+        /**********************
+                 LinkToPost
+        ***********************/
+        public IEnumerable<LinkPost> GetLinkToPost(int limit, int offset)
+        {
+            using (var db = new StackOverflowContext())
+            {
+                return db.LinkPosts
+                    .OrderBy(lp => lp.PostId)
+                    .Skip(offset)
+                    .Take(limit)
+                    .ToList();
+            }
+        }
+
+        public int GetNumberOfLinkPosts()
+        {
+            using (var db = new StackOverflowContext())
+            {
+                return db.LinkPosts.Count();
+            }
+        }
+
+        public IEnumerable<LinkPost> FindLinkToPostByPostId(int postId)
+        {
+            using (var db = new StackOverflowContext())
+            {
+                return db.LinkPosts
+                    .Where(lp => lp.PostId == postId)
+                    .ToList();
             }
         }
     }

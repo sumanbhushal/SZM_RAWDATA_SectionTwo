@@ -41,7 +41,7 @@ namespace WebApplication.Controllers
 
         public IHttpActionResult Get(int id)
         {
-            var data = _repository.FindAnnotationById(id);
+            var data = _repository.FindAnnotationById(id).Select(a => ModelFactory.Map(a, Url));
             if (data == null) return NotFound();
             return Ok(data);
         }

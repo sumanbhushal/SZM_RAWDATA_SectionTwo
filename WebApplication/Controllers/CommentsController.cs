@@ -36,5 +36,11 @@ namespace WebApplication.Controllers
 
             return Ok(result);
         }
+
+        public IHttpActionResult Get(int id)
+        {
+            var commentDetailsById = _repository.FindCommentById(id).Select(c => ModelFactory.Map(c, Url));
+            return Ok(commentDetailsById);
+        }
     }
 }

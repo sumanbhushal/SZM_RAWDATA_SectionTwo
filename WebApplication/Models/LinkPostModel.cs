@@ -7,5 +7,7 @@ namespace WebApplication.Models
 {
     public class LinkPostModel
     {
+        public string PostUrl { get; set; }
+        public int LinkPostId { get; set; }
     }
 }
