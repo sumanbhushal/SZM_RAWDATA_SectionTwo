@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataAccessLayer", "DataAcce
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MySqlDatabase", "MySqlDatabase\MySqlDatabase.csproj", "{A5E04D4E-6EE4-4167-8587-6E8518E7C8BD}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApp.Tests", "WebApp.Tests\WebApp.Tests.csproj", "{FE6DF8A5-1056-4ED5-A100-3AF838FBE998}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{A5E04D4E-6EE4-4167-8587-6E8518E7C8BD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A5E04D4E-6EE4-4167-8587-6E8518E7C8BD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A5E04D4E-6EE4-4167-8587-6E8518E7C8BD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FE6DF8A5-1056-4ED5-A100-3AF838FBE998}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FE6DF8A5-1056-4ED5-A100-3AF838FBE998}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FE6DF8A5-1056-4ED5-A100-3AF838FBE998}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FE6DF8A5-1056-4ED5-A100-3AF838FBE998}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
