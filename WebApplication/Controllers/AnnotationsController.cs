@@ -14,8 +14,13 @@ namespace WebApplication.Controllers
 {
     public class AnnotationsController : ApiController
     {
-        private IRepository _repository = new MySqlRepository();
+        private readonly IRepository _repository;
 
+        public AnnotationsController(IRepository repository)
+        {
+           _repository = repository;
+        }
+        
         public IHttpActionResult Get(int page = 0, int pagesize = Config.DefaultPageSize)
         {
             int limit = pagesize;
@@ -47,7 +52,7 @@ namespace WebApplication.Controllers
         }
         
         /*Insert Annotation*/
-        public IHttpActionResult Put(AnnotationModel annotationModel)
+        public IHttpActionResult Post(AnnotationModel annotationModel)
         {
             var annotation = new Annotation
             {
@@ -65,7 +70,7 @@ namespace WebApplication.Controllers
 
         /*Update Annotation*/
 
-        public IHttpActionResult Post(int id, AnnotationModel annotationModel)
+        public IHttpActionResult Put(int id, AnnotationModel annotationModel)
         {
             var annotation = new Annotation
             {
