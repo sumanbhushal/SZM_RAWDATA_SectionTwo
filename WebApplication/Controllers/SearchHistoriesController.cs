@@ -44,7 +44,7 @@ namespace WebApplication.Controllers
             return Ok(searchHistoryById);
         }
 
-        public IHttpActionResult Put(SearchHistoryModel searchHistoryModel)
+        public IHttpActionResult Post(SearchHistoryModel searchHistoryModel)
         {
             var searchHisotry = new SearchHistory
             {
