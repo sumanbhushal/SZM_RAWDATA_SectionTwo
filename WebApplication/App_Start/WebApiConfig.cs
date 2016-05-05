@@ -63,6 +63,13 @@ namespace WebApplication
                 routeTemplate: "api/linkposts/{id}",
                 defaults: new { controller = "LinkPosts", id = RouteParameter.Optional }
             );
+
+            config.Routes.MapHttpRoute(
+                name: Config.MarkedPostsRoute,
+                routeTemplate: "api/markedposts/{id}",
+                defaults: new { controller = "MarkedPosts", id = RouteParameter.Optional }
+            );
+
             config.Formatters.JsonFormatter.SerializerSettings.ContractResolver = 
                 new CamelCasePropertyNamesContractResolver();
             config.Formatters.Remove(config.Formatters.XmlFormatter);

@@ -17,6 +17,7 @@ namespace DataAccessLayer
         IEnumerable<Post> GetAllMatchPostsWithKeyword(string keyword);
         IEnumerable<Post> GetPostDetailsByPostId(int id);
         IEnumerable<Post> GetAnswerPostByPostId(int id);
+        bool MarkPost(int id);
 
         /*----------------------
                 Annotation
@@ -73,5 +74,11 @@ namespace DataAccessLayer
         IEnumerable<LinkPost> GetLinkToPost(int limit, int offset);
         int GetNumberOfLinkPosts();
         IEnumerable<LinkPost> FindLinkToPostByPostId(int postId);
+
+        /**********************
+               Marked Post
+        ***********************/
+        IEnumerable<Post> GetAllMakedPosts(int limit, int offset);
+        int GetNumberOfMarkedPosts();
     }
 }

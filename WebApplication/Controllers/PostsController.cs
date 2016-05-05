@@ -45,19 +45,13 @@ namespace WebApplication.Controllers
             return Ok(searchResults);
         }
 
-       /* public IHttpActionResult Put(int id, PostModel model)
+        public IHttpActionResult Put(int id)
         {
-            var post = new Post
-            {
-                Id = id,
-                Title = model.Title
-            };
-
-            if(_repository.UpdatePost(id, post) == false)
-                return NotFound():
-            return Created(Config.PostsRoute, ModelFactory.Map(post));
+            if (_repository.MarkPost(id) == false)
+                return NotFound();
+            /*return Created(Config.PostsRoute, ModelFactory.Map(post));#1#*/
             return Ok();
-        }*/
+        }
 
     }
 }

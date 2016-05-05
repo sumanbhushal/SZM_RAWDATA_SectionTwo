@@ -75,6 +75,27 @@ namespace MySqlDatabase
                 return answersByPostId;
             }
         }
+
+        public bool MarkPost(int id)
+        {
+            using (var database = new StackOverflowContext())
+            {
+                var postData = database.Posts.FirstOrDefault(p => p.Id == id);
+                if (postData == null) return false;
+
+                try
+                {
+                    postData.Mark = 1;
+                    database.SaveChanges();
+                    return true;
+                }
+                catch (Exception)
+                {
+                    return false;
+                }
+            }
+        }
+
         /*----------------------
             Annotation
         ----------------------*/
@@ -419,6 +440,33 @@ namespace MySqlDatabase
                 return db.LinkPosts
                     .Where(lp => lp.PostId == postId)
                     .ToList();
+            }
+        }
+
+        /**********************
+               Marked Post
+       ***********************/
+        public IEnumerable<Post> GetAllMakedPosts(int limit, int offset)
+        {
+            using (var db = new StackOverflowContext())
+            {
+                var markedPosts = db.Posts
+                    .Where(p => p.Mark == 1)
+                    .OrderBy(mp => mp.Id)
+                    .Skip(offset)
+                    .Take(limit)
+                    .ToList();
+                return markedPosts;
+            }
+        }
+
+        public int GetNumberOfMarkedPosts()
+        {
+            using (var db = new StackOverflowContext())
+            {
+                return db.Posts
+                    .Where(mp => mp.Mark == 1)
+                    .Count();
             }
         }
     }
