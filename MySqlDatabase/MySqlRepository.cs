@@ -469,5 +469,25 @@ namespace MySqlDatabase
                     .Count();
             }
         }
+
+        public bool UnMarkPost(int id)
+        {
+            using (var database = new StackOverflowContext())
+            {
+                var markedPost = database.Posts.FirstOrDefault(p => p.Id == id);
+                if (markedPost == null) return false;
+
+                try
+                {
+                    markedPost.Mark = 0;
+                    database.SaveChanges();
+                    return true;
+                }
+                catch (Exception)
+                {
+                    return false;
+                }
+            }
+        }
     }
 }

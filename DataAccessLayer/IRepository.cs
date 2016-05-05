@@ -80,5 +80,6 @@ namespace DataAccessLayer
         ***********************/
         IEnumerable<Post> GetAllMakedPosts(int limit, int offset);
         int GetNumberOfMarkedPosts();
+        bool UnMarkPost(int id);
     }
 }
