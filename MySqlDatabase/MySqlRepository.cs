@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using DataAccessLayer;
 using DomainModel;
+using MySql.Data.MySqlClient;
 
 namespace MySqlDatabase
 {
@@ -41,6 +42,14 @@ namespace MySqlDatabase
         {
             using (var db = new StackOverflowContext())
             {
+
+                //SqlCommand mySqlCommand = new SqlCommand("rough");
+                // mySqlCommand.CommandType = CommandType.StoredProcedure;
+                //mySqlCommand.Parameters.AddWithValue("@param", MySqlDbType.VarChar).Value = keyword;
+                // mySqlCommand.Parameters.Add( new SqlParameter("param", keyword));
+               // var parameter = new MySqlParameter("param", keyword);
+                //var matchResult = db.Database.SqlQuery<Post>("rough ", parameter)
+                   // .ToList();
                 var matchResult = db.Posts
                     .Where(p => p.Title.Contains(keyword))
                     .ToList();

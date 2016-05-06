@@ -49,7 +49,6 @@ namespace WebApplication.Controllers
         {
             if (_repository.MarkPost(id) == false)
                 return NotFound();
-            /*return Created(Config.PostsRoute, ModelFactory.Map(post));#1#*/
             return Ok();
         }
 
