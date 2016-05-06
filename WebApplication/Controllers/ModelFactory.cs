@@ -85,7 +85,7 @@ namespace WebApplication.Controllers
             if (annotation == null) return null;
 
             var annotationModel = AnnotationMapper.Map<AnnotationModel>(annotation);
-            annotationModel.Url = urlHelper.Link(Config.AnnotationRoute, new { annotation.Id });
+            annotationModel.Url = urlHelper.Link(Config.AnnotationRoute, new { id = annotation.Id });
             return annotationModel;
 
         }

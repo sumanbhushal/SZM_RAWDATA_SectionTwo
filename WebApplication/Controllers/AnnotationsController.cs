@@ -61,9 +61,7 @@ namespace WebApplication.Controllers
                 AnnotationCreateDate = annotationModel.AnnotationCreateDate,
                 AnnotationDescription = annotationModel.AnnotationDescription
             };
-
-            if (_repository.InsertNewAnnotation(annotation) == false)
-                return NotFound();
+            _repository.InsertNewAnnotation(annotation);
             return Created(Config.AnnotationRoute, ModelFactory.Map(annotation, Url));
             //return Ok();
         }
@@ -81,30 +79,19 @@ namespace WebApplication.Controllers
                 AnnotationDescription = annotationModel.AnnotationDescription
             };
 
-            var data = _repository.FindAnnotationById(id);
-            if (data != null)
+            if (!_repository.UpdateAnnotation(annotation))
             {
-                if (_repository.UpdateAnnotation(annotation) == false)
-                    return NotFound();
-
-                return Created(Config.AnnotationRoute, ModelFactory.Map(annotation, Url));
-                //return Ok();
+                return NotFound();
             }
-            return NotFound();
+            return Ok();
 
         }
 
         /*Delete Annotation*/
         public IHttpActionResult Delete(int id)
         {
-            var data = _repository.FindAnnotationById(id);
-            if (data != null)
-            {
-                _repository.DeleteAnnotationById(id);
-                return Ok();
-            }
-
-            return NotFound();
+            if (!_repository.DeleteAnnotationById(id)) return NotFound();
+            return Ok();
         }
 
 

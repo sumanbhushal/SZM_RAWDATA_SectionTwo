@@ -14,7 +14,7 @@ namespace DomainModel
         [Key]
         public int Id { get; set; }
         public int PostId { get; set; }
-        public int CommentId { get; set; }
+        public int? CommentId { get; set; }
         public string AnnotationDescription { get; set; }
         public DateTime AnnotationCreateDate { get; set; }
 
