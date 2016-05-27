@@ -81,5 +81,11 @@ namespace DataAccessLayer
         IEnumerable<Post> GetAllMakedPosts(int limit, int offset);
         int GetNumberOfMarkedPosts();
         bool UnMarkPost(int id);
+
+        /**********************
+               Search Post
+        ***********************/
+        IEnumerable<Search> GetAllPostsWithSearchKeyword(string keyword, int limit, int offset);
+        int GetNumberOfSearchPosts(string keyword);
     }
 }

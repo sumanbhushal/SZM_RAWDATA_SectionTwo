@@ -19,7 +19,8 @@ namespace WebApplication.Controllers
         private static readonly IMapper UserMapper;
         private static readonly IMapper LinkPostMapper;
         private static readonly IMapper PostTypeMapper;
-        private static readonly IMapper PostTagsMapper; 
+        private static readonly IMapper PostTagsMapper;
+        private static readonly IMapper SearchMapper;
 
 
         static ModelFactory()
@@ -41,7 +42,8 @@ namespace WebApplication.Controllers
             /*--------------------------------
                     SearchHistory
             ---------------------------------*/
-            var searchHisotyConfig = new MapperConfiguration(shcfg => shcfg.CreateMap<SearchHistory, SearchHistoryModel>());
+            var searchHisotyConfig =
+                new MapperConfiguration(shcfg => shcfg.CreateMap<SearchHistory, SearchHistoryModel>());
             SearchHistoryMapper = searchHisotyConfig.CreateMapper();
 
             /*--------------------------------
@@ -74,6 +76,12 @@ namespace WebApplication.Controllers
            ---------------------------*/
             var postTagsConfig = new MapperConfiguration(tcfg => tcfg.CreateMap<Tag, TagModel>());
             PostTagsMapper = postTagsConfig.CreateMapper();
+
+            /*--------------------------
+                   Search
+            ---------------------------*/
+            var searchConfig = new MapperConfiguration(scfg => scfg.CreateMap<Search, SearchModel>());
+            SearchMapper = searchConfig.CreateMapper();
         }
 
         /*--------------------------------
@@ -89,9 +97,11 @@ namespace WebApplication.Controllers
             return annotationModel;
 
         }
+
         /*--------------------------------------
                     Post
         ---------------------------------------*/
+
         public static PostModel Map(Post post, UrlHelper urlHelper)
         {
             if (post == null) return null;
@@ -104,6 +114,7 @@ namespace WebApplication.Controllers
         /*--------------------------------
                    Comment 
            --------------------------------*/
+
         public static CommentModel Map(Comment comment, UrlHelper urlHelper)
         {
             if (comment == null) return null;
@@ -112,6 +123,7 @@ namespace WebApplication.Controllers
             commentModel.Url = urlHelper.Link(Config.CommentsRoute, new { comment.Id });
             return commentModel;
         }
+
         /*--------------------------------
                 Search History 
         --------------------------------*/
@@ -173,8 +185,21 @@ namespace WebApplication.Controllers
             if (tags == null) return null;
 
             var tagModel = PostTagsMapper.Map<TagModel>(tags);
-            tagModel.PostUrl = urlHelper.Link(Config.TagsRoute, new { tags.PostId});
+            tagModel.PostUrl = urlHelper.Link(Config.TagsRoute, new { tags.PostId });
             return tagModel;
+        }
+
+        /*----------------------------
+               Search
+       -----------------------------*/
+
+        public static SearchModel Map(Search search, UrlHelper urlHelper)
+        {
+            if (search == null) return null;
+
+            var searchModel = SearchMapper.Map<SearchModel>(search);
+            searchModel.Url = urlHelper.Link(Config.PostsRoute, new { search.Id });
+            return searchModel;
         }
     }
 }

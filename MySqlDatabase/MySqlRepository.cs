@@ -42,19 +42,9 @@ namespace MySqlDatabase
         {
             using (var db = new StackOverflowContext())
             {
-
-                //SqlCommand mySqlCommand = new SqlCommand("rough");
-                // mySqlCommand.CommandType = CommandType.StoredProcedure;
-                //mySqlCommand.Parameters.AddWithValue("@param", MySqlDbType.VarChar).Value = keyword;
-                // mySqlCommand.Parameters.Add( new SqlParameter("param", keyword));
-               // var parameter = new MySqlParameter("param", keyword);
-                //var matchResult = db.Database.SqlQuery<Post>("rough ", parameter)
-                   // .ToList();
                 var matchResult = db.Posts
-                    .Where(p => p.Title.Contains(keyword))
+                    .Where(p => p.Title.Contains(keyword) || p.Body.Contains(keyword))
                     .ToList();
-
-
                 return matchResult;
 
                 //return db.Posts.Take(10).ToList();
@@ -496,6 +486,32 @@ namespace MySqlDatabase
                 {
                     return false;
                 }
+            }
+        }
+
+        public IEnumerable<Search> GetAllPostsWithSearchKeyword(string keyword, int limit, int offset)
+        {
+            using (var db = new StackOverflowContext())
+            {
+
+                var p = new MySqlParameter("@p", MySqlDbType.String) { Value = keyword };
+                var l = new MySqlParameter("@l", MySqlDbType.Int32) { Value = limit };
+                var o = new MySqlParameter("@o", MySqlDbType.Int32) { Value = offset };
+                var matchResult = db.Database.SqlQuery<Search>("call searchProcedure(@p, @l, @o)", p, l, o);
+                var x = matchResult.ToList();
+                return x;
+            }
+        }
+
+        public int GetNumberOfSearchPosts(string keyword)
+        {
+            using (var db = new StackOverflowContext())
+            {
+
+                var p = new MySqlParameter("@p", MySqlDbType.VarChar) { Value = keyword };
+                var matchResult = db.Database.SqlQuery<Search>("call searchTotalProcedure(@p)", p);
+                var numberofSearchResutl = matchResult.Count();
+                return numberofSearchResutl;
             }
         }
     }

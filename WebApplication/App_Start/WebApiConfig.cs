@@ -70,6 +70,12 @@ namespace WebApplication
                 defaults: new { controller = "MarkedPosts", id = RouteParameter.Optional }
             );
 
+            config.Routes.MapHttpRoute(
+                name: Config.SearchPostsRoute,
+                routeTemplate: "api/search/{id}",
+                defaults: new { controller = "Search", id = RouteParameter.Optional }
+            );
+
             config.Formatters.JsonFormatter.SerializerSettings.ContractResolver = 
                 new CamelCasePropertyNamesContractResolver();
             config.Formatters.Remove(config.Formatters.XmlFormatter);

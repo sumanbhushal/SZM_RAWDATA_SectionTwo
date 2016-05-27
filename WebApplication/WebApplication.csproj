@@ -170,9 +170,35 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\bootstrap-theme.css" />
+    <Content Include="Content\bootstrap-theme.min.css" />
+    <Content Include="Content\bootstrap.css" />
+    <Content Include="Content\bootstrap.min.css" />
+    <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
-    <Content Include="scripts\ai.0.15.0-build58334.js" />
-    <Content Include="scripts\ai.0.15.0-build58334.min.js" />
+    <Content Include="index.html" />
+    <Content Include="scripts\app\config.js" />
+    <Content Include="scripts\app\dataservice.js" />
+    <Content Include="scripts\app\viewmodel.js" />
+    <Content Include="scripts\lib\ai.0.15.0-build58334.js" />
+    <Content Include="scripts\lib\ai.0.15.0-build58334.min.js" />
+    <Content Include="fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Content\bootstrap.min.css.map" />
+    <Content Include="Content\bootstrap.css.map" />
+    <Content Include="Content\bootstrap-theme.min.css.map" />
+    <Content Include="Content\bootstrap-theme.css.map" />
+    <None Include="scripts\lib\jquery-2.2.3.intellisense.js" />
+    <Content Include="scripts\lib\bootstrap.js" />
+    <Content Include="scripts\lib\bootstrap.min.js" />
+    <Content Include="scripts\lib\jquery-2.2.3.js" />
+    <Content Include="scripts\lib\jquery-2.2.3.min.js" />
+    <Content Include="scripts\lib\r.js" />
+    <Content Include="scripts\lib\require.js" />
+    <Content Include="scripts\lib\text.js" />
+    <Content Include="scripts\main.js" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -186,6 +212,7 @@
     <Compile Include="Controllers\ModelFactory.cs" />
     <Compile Include="Controllers\PostsController.cs" />
     <Compile Include="Controllers\PostTypesController.cs" />
+    <Compile Include="Controllers\SearchController.cs" />
     <Compile Include="Controllers\SearchHistoriesController.cs" />
     <Compile Include="Controllers\TagsController.cs" />
     <Compile Include="Controllers\UsersController.cs" />
@@ -198,6 +225,7 @@
     <Compile Include="Models\PostModel.cs" />
     <Compile Include="Models\PostTypeModel.cs" />
     <Compile Include="Models\SearchHistoryModel.cs" />
+    <Compile Include="Models\SearchModel.cs" />
     <Compile Include="Models\TagModel.cs" />
     <Compile Include="Models\UserModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -209,6 +237,7 @@
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="scripts\lib\jquery-2.2.3.min.map" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -218,6 +247,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="scripts\app\components\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DataAccessLayer\DataAccessLayer.csproj">
