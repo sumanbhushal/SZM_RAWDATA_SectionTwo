@@ -37,9 +37,22 @@ namespace WebApplication.Controllers
             return Ok(result);
         }
 
+        public IHttpActionResult Get(int id)
+        {
+            var postDetailsDataById = _repository.GetPostDetailsByPostId(id).Select(p => ModelFactory.Map(p, Url));
+            var answerRelatedToId = _repository.GetAnswerPostByPostId(id).Select(a => ModelFactory.Map(a, Url));
+
+            var result = new
+            {
+                PostDetail = postDetailsDataById,
+                answerRelatedToPost = answerRelatedToId
+            };
+            return Ok(result);
+        }
+
         public IHttpActionResult Get(string keyword)
         {
-            var searchResults = _repository.GetAllMatchPostsWithKeyword(keyword);
+            var searchResults = _repository.GetAllMatchPostsWithKeyword(keyword).Select(p => ModelFactory.Map(p, Url));
 
 
             return Ok(searchResults);
@@ -49,6 +62,7 @@ namespace WebApplication.Controllers
         {
             if (_repository.MarkPost(id) == false)
                 return NotFound();
+            /*return Created(Config.PostsRoute, ModelFactory.Map(post));#1#*/
             return Ok();
         }
 

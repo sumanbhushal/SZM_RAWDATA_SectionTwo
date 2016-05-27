@@ -174,12 +174,27 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\lumen.min.css" />
+    <Content Include="Content\main.css" />
+    <Content Include="Content\normalize.css" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="index.html" />
+    <Content Include="scripts\app\components\home\home.html" />
+    <Content Include="scripts\app\components\home\homeViewmodel.js" />
+    <Content Include="scripts\app\components\menu\menu.html" />
+    <Content Include="scripts\app\components\menu\menuViewmodel.js" />
+    <Content Include="scripts\app\components\postDetails\postDetails.html" />
+    <Content Include="scripts\app\components\postDetails\postDetailsViewmodel.js" />
+    <Content Include="scripts\app\components\posts\posts.html" />
+    <Content Include="scripts\app\components\posts\postsViewmodel.js" />
+    <Content Include="scripts\app\components\searchHistory\searchHistory.html" />
+    <Content Include="scripts\app\components\searchHistory\searchHistoryViewmodel.js" />
     <Content Include="scripts\app\config.js" />
     <Content Include="scripts\app\dataservice.js" />
     <Content Include="scripts\app\viewmodel.js" />
+    <Content Include="scripts\lib\knockout-3.4.0.debug.js" />
+    <Content Include="scripts\lib\knockout-3.4.0.js" />
     <Content Include="scripts\lib\ai.0.15.0-build58334.js" />
     <Content Include="scripts\lib\ai.0.15.0-build58334.min.js" />
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
@@ -195,6 +210,7 @@
     <Content Include="scripts\lib\bootstrap.min.js" />
     <Content Include="scripts\lib\jquery-2.2.3.js" />
     <Content Include="scripts\lib\jquery-2.2.3.min.js" />
+    <Content Include="scripts\lib\modernizr-2.8.3.js" />
     <Content Include="scripts\lib\r.js" />
     <Content Include="scripts\lib\require.js" />
     <Content Include="scripts\lib\text.js" />
@@ -247,7 +263,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="scripts\app\components\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DataAccessLayer\DataAccessLayer.csproj">
