@@ -1,0 +1,15 @@
+﻿body {
+}
+
+#search_form {
+    padding-top: 15px;
+    padding-bottom: 15px
+}
+#search_image {
+    height:18px;
+    width: 18px;
+}
+
+#list_search {
+    padding-bottom: 15px;
+}

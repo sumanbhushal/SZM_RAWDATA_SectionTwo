@@ -1,0 +1,32 @@
+﻿<section class="container-fluid">
+    <div>
+        <button type="button" class="btn btn-danger  col-lg-offset-10 col-sm-offset-10" data-bind="click: function(){clearSearchData()}">Clear Search Data</button>
+    </div>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Date</th>
+                <th> Action </th>
+            </tr>
+        </thead>
+        <tbody data-bind="foreach: searchHistories">
+            <tr>
+                <td><a href="#" data-bind="click: $parent.onKeywordClick"><span data-bind="text: keyword"></span></a></td>
+                <td>
+                    <a href="#" class="btn btn-xs btn-danger" data-bind="click: $parent.deleteSearchHistory"><span class="glyphicon glyphicon-trash"></span></a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+<div data-bind="if:total">
+    <nav>
+        <ul class="pager">
+            <li>
+                <span data-bind="text:total">Total Results: </span>
+                <button type="button" class="btn btn-primary" data-bind="click: previousSearchHistoryLink">Prev</button>
+                <button type="button" class="btn btn-primary" data-bind="click: nextSearchHistoryLink">Next</button>
+            </li>
+        </ul>
+    </nav>
+</div>
