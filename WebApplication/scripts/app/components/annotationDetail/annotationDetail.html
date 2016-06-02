@@ -1,0 +1,35 @@
+﻿<section class="container-fluid">
+    <div data-bind="foreach:annotation">
+        <div class="row">
+            <ul style="list-style: none;" class="col-md-12">
+                <li>
+                    <a href="#" data-bind="click: $parent.clickPost">
+                        <h3 class="list-group-item-heading text-primary" data-bind="text: title"></h3>
+                    </a>
+                    <p class="list-group-item-text text-justify" data-bind="html:body"></p>
+                    <div data-bind="visible: $parent.showEdit">
+                        <h5 class="list-group-item-heading text-primary">DESCRIPTION :</h5>
+                        <p class="list-group-item-text text-justify" data-bind="text: annotationDescription"></p>
+                    </div>
+                    <div data-bind="visible: $parent.hiddenEdit">
+                        <h5 class="list-group-item-heading text-primary">DESCRIPTION :</h5>
+                        <textarea class="form-control" rows="5" data-bind="value: annotationDescription"></textarea>
+                        <button class="btn btn-primary" data-bind="click:function(){$parent.updateannotation($data)}">Update</button>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <div class="btn-group btn-group-justified" role="group">
+            <div class="btn-group" role="group">
+                <button type="button" class="btn btn-default" data-bind="click:function(){$parent.back($data)}">Back</button>
+            </div>
+            <div class="btn-group" role="group">
+                <button type="button" class="btn btn-default" data-bind="click:function(){$parent.toggleVisible()}">Edit</button>
+            </div>
+            <div class="btn-group" role="group">
+                <button type="button" class="btn btn-default" data-bind="click: function(){$parent.deleteAnnotation($data)}"><span class="glyphicon glyphicon-trash"></span></button>
+            </div>
+        </div>
+    </div>
+</section>
+

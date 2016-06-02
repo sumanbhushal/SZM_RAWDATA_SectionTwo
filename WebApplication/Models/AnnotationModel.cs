@@ -8,9 +8,12 @@ namespace WebApplication.Models
     public class AnnotationModel
     {
         public string Url { get; set; }
+        public int Id { get; set; }
         public int PostId { get; set; }
         public int CommentId { get; set; }
         public string AnnotationDescription { get; set; }
         public DateTime AnnotationCreateDate { get; set; }
+        public string Body { get; set; }
+        public string Title { get; set; }
     }
 }

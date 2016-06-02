@@ -1,0 +1,85 @@
+﻿<section class="container-fluid">
+    <h3>annotations</h3>
+    <div data-bind="foreach:annotations">
+        <div class="row">
+            <ul style="list-style: none;" class="col-md-12">
+                <li>
+                    <a href="#" data-bind="click: $parent.clickAnnotation">
+                        <h3 class="list-group-item-heading text-primary" data-bind="text: title"></h3>
+                    </a>
+                    <p class="list-group-item-text text-justify" data-bind="text: annotationDescription"></p>
+                    <a href="#" class="btn btn-xs btn-danger" data-bind="click: function(){$parent.deleteAnnotation($data)}"><span class="glyphicon glyphicon-trash"></span></a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="container-fluid">
+        <nav>
+            <ul class="pager">
+                <li>
+                    Total:<span data-bind="text:total"></span>
+                    <!--ko if:prevValue -->
+                    <button type="button" class="btn btn-primary" data-bind="click: prevLink">Prev</button>
+                    <!--/ko-->
+                    <!--ko if:nextValue -->
+                    <button type="button" class="btn btn-primary" data-bind="click: nextLink">Next</button>
+                    <!--/ko-->
+                </li>
+            </ul>
+        </nav>
+    </div>
+</section>
+<!--<h3>annotations</h3>
+
+    <table class="table table-bordered">
+        <thead>
+            <tr><td>Title</td><td>description</td><td></td></tr>
+        </thead>
+        <tbody data-bind="foreach: annotations">
+            <tr>
+                <td>
+                    <a data-bind="click: $parent.clickAnnotation" href="#">
+                        <h5 data-bind="text: title"></h5>
+                    </a>
+                </td>
+                <td data-bind="text: annotationDescription"></td>
+                <td><span class="glyphicon glyphicon-trash" data-bind="click: function(){$parent.deleteAnnotation($data)}"></span></td>
+            </tr>
+        </tbody>
+    </table>-->
+
+<!--<div data-bind="foreach:$data.annotations">
+    <form data-bind="submit: function(){$parent.addannotation($data)}">
+        <input type="text" data-bind="value: postId" />
+        <textarea data-bind="value: annotationDescription"></textarea>
+        <button type="submit">submit</button>
+    </form>
+
+    <div>
+        <button class="btn btn-default" data-bind="click:function(){$parent.toggleVisible()}">Edit</button>
+        <button class="btn btn-default" data-bind="click: function(){$parent.deleteAnnotation($data)}">delete</button>
+    </div>
+    Id :
+    <div data-bind="text: id"></div>
+    URL :
+    <div data-bind="text: url"></div>
+    POSTID :
+    <div data-bind="text: postId"></div>
+    PostTITLE :
+    <div data-bind="text: title"></div>
+    PostBODY :
+    <div data-bind="html: body"></div>
+    <div data-bind="visible: $parent.showEdit">
+        DESCRIPTION :
+        <div data-bind="text: annotationDescription"></div>
+    </div>
+    <div data-bind="visible: $parent.hiddenEdit">
+        DESCRIPTION :
+        <textarea class="form-control" rows="5" data-bind="value: annotationDescription"></textarea>
+        <button class="btn btn-default" data-bind="click:function(){$parent.updateannotation($data)}">Update</button>
+    </div>
+    CreatedDATE :
+    <div data-bind="text: annotationCreateDate"></div>
+    <br />
+</div>--->
+

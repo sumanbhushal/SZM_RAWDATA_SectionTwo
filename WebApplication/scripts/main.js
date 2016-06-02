@@ -59,5 +59,20 @@ require(['knockout', 'app/viewmodel', 'app/config', 'jquery', 'bootstrap'], func
         template: { require: 'text!app/components/postDetails/postDetails.html' }
     });
 
+    ko.components.register(config.annotationComponent, {
+        viewModel: { require: "app/components/annotations/annotationViewmodel" },
+        template: { require: "text!app/components/annotations/annotation.html" }
+    });
+
+    ko.components.register(config.annotationDetailComponent, {
+        viewModel: { require: "app/components/annotationDetail/annotationDetailViewmodel" },
+        template: { require: "text!app/components/annotationDetail/annotationDetail.html" }
+    });
+
+    ko.components.register(config.markedComponent, {
+        viewModel: { require: "app/components/marked/markedPostsViewmodel" },
+        template: { require: "text!app/components/marked/markedPosts.html" }
+    });
+
     ko.applyBindings(vm);
 });

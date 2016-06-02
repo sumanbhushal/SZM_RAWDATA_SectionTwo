@@ -128,7 +128,7 @@ namespace MySqlDatabase
         {
             using (var database = new StackOverflowContext())
             {
-                return database.Annotations
+                return database.Annotations.Include("Post")
                     .OrderBy(a => a.Id)
                     .Skip(offset)
                     .Take(limit)
@@ -149,7 +149,7 @@ namespace MySqlDatabase
         {
             using (var database = new StackOverflowContext())
             {
-                return database.Annotations
+                return database.Annotations.Include("Post")
                     .Where(a => a.Id == id)
                     .ToList();
             }
@@ -163,7 +163,9 @@ namespace MySqlDatabase
                 {
                     database.Annotations.Add(annotation);
                     database.SaveChanges();
+                    annotation.Post = database.Posts.FirstOrDefault(x => x.Id == annotation.PostId);
                     return true;
+
                 }
                 catch (Exception)
                 {

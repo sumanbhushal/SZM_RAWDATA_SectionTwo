@@ -179,9 +179,16 @@
     <Content Include="Content\normalize.css" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
+    <Content Include="images\logo.png" />
     <Content Include="index.html" />
+    <Content Include="scripts\app\components\annotationDetail\annotationDetail.html" />
+    <Content Include="scripts\app\components\annotationDetail\annotationDetailViewmodel.js" />
+    <Content Include="scripts\app\components\annotations\annotation.html" />
+    <Content Include="scripts\app\components\annotations\annotationViewmodel.js" />
     <Content Include="scripts\app\components\home\home.html" />
     <Content Include="scripts\app\components\home\homeViewmodel.js" />
+    <Content Include="scripts\app\components\marked\markedPosts.html" />
+    <Content Include="scripts\app\components\marked\markedPostsViewmodel.js" />
     <Content Include="scripts\app\components\menu\menu.html" />
     <Content Include="scripts\app\components\menu\menuViewmodel.js" />
     <Content Include="scripts\app\components\postDetails\postDetails.html" />

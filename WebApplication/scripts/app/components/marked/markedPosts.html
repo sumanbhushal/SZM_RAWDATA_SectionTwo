@@ -1,0 +1,32 @@
+﻿<section class="container-fluid">
+    <h3>Marked posts</h3>
+    <div data-bind="foreach:markedPosts">
+        <div class="row">
+            <ul style="list-style: none;" class="col-md-12">
+                <li>
+                    <a href="#" data-bind="click: $parent.clickPost">
+                        <h3 class="list-group-item-heading text-primary" data-bind="text: title"></h3>
+                    </a>
+                    <p class="list-group-item-text text-justify" data-bind="html:body"></p>
+                    <input type="hidden" data-bind="value: mark=0"/>
+                    <button type="button" class="btn btn-primary" data-bind="click: function(){$parent.unmark($data)}">Unmark</button>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="container-fluid">
+        <nav>
+            <ul class="pager">
+                <li>
+                    Total:<span data-bind="text:total"></span>
+                    <!--ko if:prevValue -->
+                    <button type="button" class="btn btn-primary" data-bind="click: prevLink">Prev</button>
+                    <!--/ko-->
+                    <!--ko if:nextValue -->
+                    <button type="button" class="btn btn-primary" data-bind="click: nextLink">Next</button>
+                    <!--/ko-->
+                </li>
+            </ul>
+        </nav>
+    </div>
+</section>

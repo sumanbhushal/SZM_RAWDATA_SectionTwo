@@ -76,6 +76,78 @@
                 type: 'DELETE',
                 url: url
             });
+        },
+
+        //add Annotation
+        addAnnotation: function (data) {
+            var url = config.annotationurl;
+            $.ajax({
+                url: url,
+                type: "Post",
+                data: data
+            });
+        },
+
+        //get Anntations
+        getAnnotations: function (url, callback) {
+            if (callback == undefined) {
+                callback = url;
+                url = config.annotationurl;
+            }
+            $.getJSON(url, function (data) {
+                callback(data);
+            });
+        },
+
+        //get Annotation
+        getAnnotation: function (url, annotationUrl, callback) {
+            if (callback == undefined) {
+                callback = url;
+                url = annotationUrl;
+            }
+            $.getJSON(url, function (data) {
+                callback(data);
+            });
+        },
+
+        //delete Annotation
+        deleteAnnotationByid: function (id) {
+            var url = config.annotationurl;
+            $.ajax({
+                url: url + "/" + id,
+                type: "Delete"
+            });
+        },
+
+        //update Annotation
+        updateAnnotation: function (data) {
+            var url = config.annotationurl;
+            $.ajax({
+                url: url + "/" + data.id,
+                type: "Put",
+                data: data
+            });
+        },
+
+        //update post for unmark
+        unMark: function (data) {
+            var url = data.url;
+            $.ajax({
+                url: url,
+                type: "Put",
+                data: data
+            });
+        },
+
+        //get marked posts
+        getMarkedPosts: function (url, callback) {
+            if (callback == undefined) {
+                callback = url;
+                url = config.markedpostsurl;
+            }
+            $.getJSON(url, function (data) {
+                callback(data);
+            });
         }
 
     }
