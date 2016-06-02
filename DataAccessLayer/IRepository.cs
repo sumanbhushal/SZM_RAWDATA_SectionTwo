@@ -58,7 +58,8 @@ namespace DataAccessLayer
         IEnumerable<Tag> GetTags(int limit, int offset);
         int GetNumberOfTags();
         IEnumerable<Tag> FindTagsByPostId(int postid);
-
+        IEnumerable<Tag> GetTagsByPostId(int postId, int limit, int offset);
+        int GetNumberOfTagsByPostId(int postId);
         /*----------------------
                  User
          ------------------------*/
@@ -92,5 +93,6 @@ namespace DataAccessLayer
         IEnumerable<Search> GetAllPostsWithSearchKeyword(string keyword, int limit, int offset);
         int GetNumberOfSearchPosts(string keyword);
 
+        
     }
 }

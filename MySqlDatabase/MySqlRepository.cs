@@ -408,6 +408,31 @@ namespace MySqlDatabase
             }
         }
 
+        public IEnumerable<Tag> GetTagsByPostId(int postId, int limit, int offset)
+        {
+            using (var db = new StackOverflowContext())
+            {
+                var tagsByPostId = db.Tags
+                    .Where(tg => tg.PostId == postId)
+                    .OrderBy(p => p.PostId)
+                    .Skip(offset)
+                    .Take(limit)
+                    .ToList();
+                return tagsByPostId;
+            }
+        }
+
+        public int GetNumberOfTagsByPostId(int postId)
+        {
+            using (var db = new StackOverflowContext())
+            {
+                var numberTagsByPostId = db.Tags
+                    .Where(tg => tg.PostId == postId)
+                    .Count();
+                return numberTagsByPostId;
+            }
+        }
+
         /*-----------------------
                 User
         -----------------------*/

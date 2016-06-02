@@ -88,6 +88,12 @@ namespace WebApplication
                 defaults: new { controller = "PostsAnswers", id = RouteParameter.Optional }
             );
 
+            config.Routes.MapHttpRoute(
+                name: Config.PostsTagsRoute,
+                routeTemplate: "api/posts/{postId}/tags",
+                defaults: new { controller = "PostsTags", id = RouteParameter.Optional }
+            );
+
             config.Formatters.JsonFormatter.SerializerSettings.ContractResolver = 
                 new CamelCasePropertyNamesContractResolver();
             config.Formatters.Remove(config.Formatters.XmlFormatter);
