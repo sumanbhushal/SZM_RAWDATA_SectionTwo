@@ -79,8 +79,9 @@
         },
 
         //add Annotation
-        addAnnotation: function (data) {
+        addAnnotation: function (annoDesc) {
             var url = config.annotationurl;
+            var data = ko.toJS(annoDesc);
             $.ajax({
                 url: url,
                 type: "Post",
@@ -130,13 +131,22 @@
         },
 
         //update post for unmark
+        mark: function (postUrl) {
+            var url = postUrl;
+            $.ajax({
+                url: url,
+                type: "Put"
+            });
+        },
+
+        //update post for unmark
         unMark: function (data) {
             var url = data.url;
             $.ajax({
                 url: url,
                 type: "Put",
                 data: data
-            });
+        });
         },
 
         //get marked posts
