@@ -107,15 +107,16 @@ namespace MySqlDatabase
                 var postData = database.Posts.FirstOrDefault(p => p.Id == id);
                 if (postData == null) return false;
 
-                try
+                if(postData.Mark == 1)
+                {
+                    postData.Mark = 0;
+                    database.SaveChanges();
+                    return true;
+                }else
                 {
                     postData.Mark = 1;
                     database.SaveChanges();
                     return true;
-                }
-                catch (Exception)
-                {
-                    return false;
                 }
             }
         }
