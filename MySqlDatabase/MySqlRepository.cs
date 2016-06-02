@@ -14,8 +14,8 @@ namespace MySqlDatabase
     public class MySqlRepository: IRepository
     {
         /*----------------------
-            Posts
-        ----------------------*/
+             Posts
+         ----------------------*/
 
         public IEnumerable<Post> GetPosts(int limit, int offset)
         {
@@ -72,6 +72,31 @@ namespace MySqlDatabase
                     .Where(pa => pa.ParentId == id && pa.PostTypeId == 2)
                     .ToList();
                 return answersByPostId;
+            }
+        }
+
+        public IEnumerable<Post> GetAnswersByPostId(int postId, int limit, int offset)
+        {
+            using (var db = new StackOverflowContext())
+            {
+                var answersByPostId = db.Posts
+                    .Where(pa => pa.ParentId == postId && pa.PostTypeId == 2)
+                    .OrderBy(p => p.Id)
+                    .Skip(offset)
+                    .Take(limit)
+                    .ToList();
+                return answersByPostId;
+            }
+        }
+
+        public int GetNumberOfAnswerByPostId(int postId)
+        {
+            using (var db = new StackOverflowContext())
+            {
+                var numberAnswersByPostId = db.Posts
+                    .Where(pa => pa.ParentId == postId && pa.PostTypeId == 2)
+                    .Count();
+                return numberAnswersByPostId;
             }
         }
 
@@ -227,6 +252,33 @@ namespace MySqlDatabase
                     .ToList();
             }
         }
+
+        public IEnumerable<Comment> GetCommentsByPostId(int postId, int limit, int offset)
+        {
+            using (var db = new StackOverflowContext())
+            {
+                var commentsByPostId = db.Comments
+                    .Where(ctp => ctp.PostId == postId)
+                    .OrderBy(p => p.Id)
+                    .Skip(offset)
+                    .Take(limit)
+                    .ToList();
+                return commentsByPostId;
+            }
+        }
+
+        public int GetNumberOfCommentsByPostId(int postId)
+        {
+            using (var db = new StackOverflowContext())
+            {
+                var numberCommentsByPostId = db.Comments
+                    .Where(ctp => ctp.PostId == postId)
+                    .Count();
+                return numberCommentsByPostId;
+            }
+        }
+
+
         /*---------------------------------
                       Search History
             ------------------------------*/

@@ -6,7 +6,7 @@
         ns.postbox.subscribe(function (value) {
             currentParams(value.params);
             currentComponent(value.component);
-        }, "changeComponentEvent");
+        }, config.changeComponentEVent);
 
         return {
             currentComponent: currentComponent,

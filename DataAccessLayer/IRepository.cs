@@ -10,13 +10,15 @@ namespace DataAccessLayer
     public interface IRepository
     {
         /*----------------------
-               Posts
-       ------------------------*/
+                Posts
+        ------------------------*/
         IEnumerable<Post> GetPosts(int limit, int offset);
         int GetNumberOfPosts();
         IEnumerable<Post> GetAllMatchPostsWithKeyword(string keyword);
         IEnumerable<Post> GetPostDetailsByPostId(int id);
         IEnumerable<Post> GetAnswerPostByPostId(int id);
+        IEnumerable<Post> GetAnswersByPostId(int postId, int limit, int offset);
+        int GetNumberOfAnswerByPostId(int postId);
         bool MarkPost(int id);
 
         /*----------------------
@@ -36,6 +38,8 @@ namespace DataAccessLayer
         IEnumerable<Comment> GetComments(int limit, int offset);
         int GetNumberOfComments();
         IEnumerable<Comment> FindCommentById(int id);
+        IEnumerable<Comment> GetCommentsByPostId(int postId, int limit, int offset);
+        int GetNumberOfCommentsByPostId(int postId);
 
         /*-------------------------
                 SearchHistory
@@ -87,5 +91,6 @@ namespace DataAccessLayer
         ***********************/
         IEnumerable<Search> GetAllPostsWithSearchKeyword(string keyword, int limit, int offset);
         int GetNumberOfSearchPosts(string keyword);
+
     }
 }

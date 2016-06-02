@@ -1,20 +1,41 @@
 ﻿define(['knockout', 'app/dataservice'], function (ko, dataservice) {
     return function (params) {
-        var postDetails = ko.observable();
-        showAddAnotation = ko.observable(false);
-        newAnnotation = ko.observable('');
-
+        var postDetail = ko.observable();
+        var showAddAnotation = ko.observable(false);
+        var newAnnotation = ko.observable('');
+        var comments = ko.observableArray();
+        var answers = ko.observableArray();
 
         var postUrl = params.postUrl;
-        dataservice.getPostDetails(postDetails, postUrl);
+        var anserUrl = postUrl + "/answers";
+        var commentUrl = postUrl + "/comments";
 
+        dataservice.getPostDetails(postDetail, postUrl);
+
+        //var postId = postUrl.substr(postUrl.lastIndexOf('/') + 1);
+
+        var answerCallback = function (data) {
+            answers(data.data);
+            console.log(data.data);
+        };
+
+        var commentCallback = function (data) {
+
+            comments(data.data);
+        };
+
+
+        dataservice.getData(anserUrl, answerCallback);
+        dataservice.getData(commentUrl, commentCallback);
 
 
         return {
             receivedPostUrl: postUrl,
-            postDetails: postDetails,
+            details: postDetail,
             showAddAnotation: showAddAnotation,
-            newAnnotation: newAnnotation
+            newAnnotation: newAnnotation,
+            comments: comments,
+            answers: answers
         }
     }
 });

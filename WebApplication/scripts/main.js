@@ -14,6 +14,7 @@ ns.postbox = {
     }
 };
 
+
 (function () {
     requirejs.config({
         baseUrl: 'scripts',
@@ -31,7 +32,7 @@ ns.postbox = {
     });
 })();
 
-require(['knockout', 'app/viewmodel', 'app/config'], function (ko, vm, config) {
+require(['knockout', 'app/viewmodel', 'app/config', 'jquery', 'bootstrap'], function (ko, vm, config, $, bstrap) {
 
     ko.components.register(config.menuComponent, {
         viewModel: { require: 'app/components/menu/menuViewmodel' },
@@ -43,10 +44,10 @@ require(['knockout', 'app/viewmodel', 'app/config'], function (ko, vm, config) {
         template: { require: 'text!app/components/home/home.html' }
     });
 
-    ko.components.register(config.postsComponent, {
-        viewModel: { require: 'app/components/posts/postsViewmodel' },
-        template: { require: 'text!app/components/posts/posts.html' }
-    });
+    //ko.components.register(config.postsComponent, {
+    //    viewModel: { require: 'app/components/posts/postsViewmodel' },
+    //    template: { require: 'text!app/components/posts/posts.html' }
+    //});
 
     ko.components.register(config.searchHistoryComponent, {
         viewModel: { require: 'app/components/searchHistory/searchHistoryViewmodel' },

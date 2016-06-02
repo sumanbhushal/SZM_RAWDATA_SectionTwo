@@ -226,6 +226,8 @@
     <Compile Include="Controllers\LinkPostsController.cs" />
     <Compile Include="Controllers\MarkedPostsController.cs" />
     <Compile Include="Controllers\ModelFactory.cs" />
+    <Compile Include="Controllers\PostsAnswersController.cs" />
+    <Compile Include="Controllers\PostsCommentsController.cs" />
     <Compile Include="Controllers\PostsController.cs" />
     <Compile Include="Controllers\PostTypesController.cs" />
     <Compile Include="Controllers\SearchController.cs" />

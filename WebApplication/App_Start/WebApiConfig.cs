@@ -76,6 +76,18 @@ namespace WebApplication
                 defaults: new { controller = "Search", id = RouteParameter.Optional }
             );
 
+            config.Routes.MapHttpRoute(
+                name: Config.PostsCommentsRoute,
+                routeTemplate: "api/posts/{postId}/comments",
+                defaults: new { controller = "PostsComments", id = RouteParameter.Optional }
+            );
+
+            config.Routes.MapHttpRoute(
+                name: Config.PostsAnswersRoute,
+                routeTemplate: "api/posts/{postId}/answers",
+                defaults: new { controller = "PostsAnswers", id = RouteParameter.Optional }
+            );
+
             config.Formatters.JsonFormatter.SerializerSettings.ContractResolver = 
                 new CamelCasePropertyNamesContractResolver();
             config.Formatters.Remove(config.Formatters.XmlFormatter);

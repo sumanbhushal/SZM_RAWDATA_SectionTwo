@@ -1,26 +1,27 @@
-﻿<section class="container" id="search_form">
+﻿<section>
     <form data-bind="submit: searchPosts">
-        <div class="col-xs-10 col-lg-8 col-lg-offset-1">
+        <div class="col-lg-5 col-lg-offset-3">
             <div class="input-group">
                 <input type="text" class="form-control" placeholder="Search for..." data-bind="value: searchword">
                 <span class="input-group-btn">
                     <button class="btn btn-primary" type="submit">Search</button>
                 </span>
-                <!--<div><span data-bind="text: searchword"></span></div>-->
-            </div><!-- /input-group -->
+            </div>
         </div>
     </form>
 </section>
 <section class="container-fluid">
     <div data-bind="foreach:searchResult">
-        <ul style="list-style: none;">
-            <li>
-                <a href="#" data-bind="click: $parent.onPostClick">
-                    <h3 class="list-group-item-heading text-primary" data-bind="text: title"></h3>
-                </a>
-                <p class="list-group-item-text text-justify" data-bind="html:body"></p>
-            </li>
-        </ul>
+        <div class="row">
+            <ul style="list-style: none;" class="col-md-12">
+                <li>
+                    <a href="#" data-bind="click: $parent.onPostClick">
+                        <h3 class="list-group-item-heading text-primary" data-bind="text: title"></h3>
+                    </a>
+                    <p class="list-group-item-text text-justify" data-bind="html:body"></p>
+                </li>
+            </ul>
+        </div>
     </div>
 </section>
 <div data-bind="if:total">

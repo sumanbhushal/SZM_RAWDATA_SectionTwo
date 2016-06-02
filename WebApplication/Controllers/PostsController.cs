@@ -40,20 +40,19 @@ namespace WebApplication.Controllers
         public IHttpActionResult Get(int id)
         {
             var postDetailsDataById = _repository.GetPostDetailsByPostId(id).Select(p => ModelFactory.Map(p, Url));
-            var answerRelatedToId = _repository.GetAnswerPostByPostId(id).Select(a => ModelFactory.Map(a, Url));
+            //var answerRelatedToId = _repository.GetAnswerPostByPostId(id).Select(a => ModelFactory.Map(a, Url));
 
-            var result = new
-            {
-                PostDetail = postDetailsDataById,
-                answerRelatedToPost = answerRelatedToId
-            };
-            return Ok(result);
+            //var result = new
+            //{
+            //    PostDetail = postDetailsDataById,
+            //    //answerRelatedToPost = answerRelatedToId
+            //};
+            return Ok(postDetailsDataById);
         }
 
         public IHttpActionResult Get(string keyword)
         {
             var searchResults = _repository.GetAllMatchPostsWithKeyword(keyword).Select(p => ModelFactory.Map(p, Url));
-
 
             return Ok(searchResults);
         }

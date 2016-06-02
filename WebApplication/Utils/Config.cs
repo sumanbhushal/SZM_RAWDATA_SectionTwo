@@ -17,6 +17,8 @@ namespace WebApplication.Utils
         public const string LinkPostsRoute = "LinkPostsApi";
         public const string MarkedPostsRoute = "MarkedPostsApi";
         public const string SearchPostsRoute = "SearchApi";
+        public const string PostsCommentsRoute = "PostsCommentsApi";
+        public const string PostsAnswersRoute = "PostsAnswersApi";
 
         public const int DefaultPageSize = 10;
     }
